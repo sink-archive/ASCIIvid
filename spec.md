@@ -44,9 +44,9 @@ A repeating pattern of the following, until the file ends.
 
 ##### *Simple ASCIIvid*
 
-| **Amount** | **Type** | **Description**  | **Extra notes**                                              |
-| ---------- | -------- | ---------------- | ------------------------------------------------------------ |
-| 3 bits     | N/A      | Brightness level | Allows for storing  8 brightness levels (0-7). Bring your own character set. |
+| **Amount**        | **Type** | **Description**  | **Extra notes**                                              |
+| ----------------- | -------- | ---------------- | ------------------------------------------------------------ |
+| 4 bits (1 nibble) | N/A      | Brightness level | Allows for storing  8 brightness levels (0-7). Bring your own character set. |
 
 ##### *Colour ASCIIvid*
 
