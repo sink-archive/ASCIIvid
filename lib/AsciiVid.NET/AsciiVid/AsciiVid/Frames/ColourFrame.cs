@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using AsciiVid.Cells;
 
 namespace AsciiVid.AsciiVid.Frames
@@ -8,7 +7,12 @@ namespace AsciiVid.AsciiVid.Frames
 	{
 		public ColourCell[] Cells;
 
-		public byte[] GetBinary() => Cells.Select(cell => cell.GetBinary()).ToArray();
+		public byte[] GetBinary()
+		{
+			var working = new List<byte>();
+			foreach (var cell in Cells) working.AddRange(cell.GetBinary());
+			return working.ToArray();
+		}
 
 		public static ColourFrame Parse(byte[] binary)
 		{
