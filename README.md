@@ -1,4 +1,7 @@
 # ASCIIvid & ASCIIimg
+**IMPORTANT NOTICE**  
+This repository uses *British naming*, this means colour instead of color, etc. in docs and official libraries.  
+Make sure you understand this before opening some issue about a typo.
 ## Modern, efficient, versatile ASCII art image and video storage formats
 You have reached the home of ASCIIvid and ASCIIimg. File formats for ASCII art images and video thought up by some random person on the internet one evening. To read the current draft of the spec click [here](https://github.com/cainy-a/ASCIIvid/blob/master/spec.md).
 ## Modern
