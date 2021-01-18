@@ -12,7 +12,11 @@ namespace AsciiVid.AsciiImg
 		public ushort Width;
 		public ushort Height;
 
-		public byte[] GetBinary() => Cells.Select(cell => cell.GetBinary()).ToArray();
+		public byte[] GetBinary() => Cells
+		                            .Select(cell => cell.GetBinary())
+		                            .Aggregate(new[] {(byte) Width, (byte) Height}, (current, b) => current
+			                            .Append(b)
+			                            .ToArray());
 
 		public static AsciiImage Parse(byte[] binary)
 		{

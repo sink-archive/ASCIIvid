@@ -13,7 +13,7 @@ namespace AsciiVid.AsciiImg
 
 		public byte[] GetBinary()
 		{
-			var working = new List<byte>();
+			var working = new List<byte> {(byte) Width, (byte) Height};
 			foreach (var cell in Cells) working.AddRange(cell.GetBinary());
 			return working.ToArray();
 		}
