@@ -11,6 +11,24 @@ namespace AsciiVid
 
 		public byte RawBinary { get; }
 
+		public NibblePair(Nibble nibble) : this()
+		{
+			RawBinary.SetLowNibble(nibble.Value);
+		}
+
+		public NibblePair(byte nibble) : this(new Nibble(nibble))
+		{
+		}
+
+		public NibblePair(Nibble firstNibble, Nibble secondNibble) : this(firstNibble)
+		{
+			RawBinary.SeHighNibble(secondNibble.Value);
+		}
+
+		public NibblePair(byte firstNibble, byte secondNibble) : this(new Nibble(firstNibble), new Nibble(secondNibble))
+		{
+		}
+
 		public byte FirstNibble
 		{
 			get => RawBinary.GetLowNibble();
@@ -38,15 +56,20 @@ namespace AsciiVid
 
 		public static NibblePair Parse(byte nibble) => new NibblePair {FirstNibble = nibble};
 
-		public static NibblePair Parse(byte firstNibble, byte secondNibble) => new NibblePair
-			{FirstNibble = firstNibble, SecondNibble = secondNibble};
+		public static NibblePair Parse(byte firstNibble, byte secondNibble) =>
+			new NibblePair(firstNibble, secondNibble);
 
-		public static NibblePair Combine(Nibble firstNibble, Nibble secondNibble) => new NibblePair
-			{FirstNibble = firstNibble.Value, SecondNibble = secondNibble.Value};
+		public static NibblePair Combine(Nibble firstNibble, Nibble secondNibble) =>
+			new NibblePair(firstNibble, secondNibble);
 	}
 
 	public struct Nibble
 	{
+		public Nibble(byte firstNibble) : this()
+		{
+			Value = firstNibble;
+		}
+
 		public byte RawBinary { get; }
 
 		public byte Value
