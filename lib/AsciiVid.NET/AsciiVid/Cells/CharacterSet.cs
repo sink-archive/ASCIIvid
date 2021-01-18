@@ -1,4 +1,4 @@
-﻿namespace AsciiVid.AsciiImg
+﻿namespace AsciiVid.Cells
 {
 	/// <summary>
 	///     Represents a set of characters to be used for Simple Cells

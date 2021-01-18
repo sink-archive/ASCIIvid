@@ -1,4 +1,6 @@
-﻿namespace AsciiVid.AsciiImg
+﻿using AsciiVid.AsciiImg;
+
+namespace AsciiVid.Cells
 {
 	/// <summary>
 	///     Represents a simple cell

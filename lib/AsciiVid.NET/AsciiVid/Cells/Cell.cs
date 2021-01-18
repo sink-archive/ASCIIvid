@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace AsciiVid.AsciiImg
+namespace AsciiVid.Cells
 {
 	/// <summary>
 	///     Represents one ASCII art cell

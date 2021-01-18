@@ -1,4 +1,4 @@
-﻿namespace AsciiVid.AsciiImg
+﻿namespace AsciiVid.Cells
 {
 	public class ColourCell : Cell
 	{
