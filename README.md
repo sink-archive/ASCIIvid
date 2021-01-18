@@ -2,7 +2,7 @@
 
 ## Modern, efficient, versatile ASCII art image and video storage formats
 
-You have reached the home of ASCIIvid and ASCIIimg. To read the current draft of the spec click [here](https://github.com/cainy-a/ASCIIvid/blob/master/spec.md).
+You have reached the home of ASCIIvid and ASCIIimg. File formats for ASCII art images and video thought up by some random person on the internet one evening. To read the current draft of the spec click [here](https://github.com/cainy-a/ASCIIvid/blob/master/spec.md).
 
 ## Modern
 
