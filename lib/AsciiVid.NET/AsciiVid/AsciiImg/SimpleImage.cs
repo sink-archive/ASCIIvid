@@ -44,12 +44,8 @@ namespace AsciiVid.AsciiImg
 				working.Add(SimpleCell.ParseSingle(b.GetHighNibble()));
 			}
 
-			return new SimpleImage
-			{
-				Cells  = working.ToArray(),
-				Width  = ToUInt16(binary[0], binary[1]), // Parse Header
-				Height = ToUInt16(binary[2], binary[3])  // Parse Header
-			};
+			return new SimpleImage(working.ToArray(),
+			                       ToUInt16(binary[0], binary[1]), ToUInt16(binary[2], binary[3])); // Parse Header
 		}
 	}
 }

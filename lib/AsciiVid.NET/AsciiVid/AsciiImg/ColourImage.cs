@@ -41,12 +41,8 @@ namespace AsciiVid.AsciiImg
 			     i += 4) // Parse cells. Start at 4 to skip the header. Step in 4s as each cell takes 4 bytes
 				working.Add(ColourCell.Parse(new[] {binary[i], binary[i + 1], binary[i + 2], binary[1 + 3]}));
 
-			return new ColourImage
-			{
-				Cells  = working.ToArray(),
-				Width  = ToUInt16(binary[0], binary[1]), // Parse Header
-				Height = ToUInt16(binary[2], binary[3])  // Parse Header
-			};
+			return new ColourImage(working.ToArray(),
+			                       ToUInt16(binary[0], binary[1]), ToUInt16(binary[2], binary[3])); // Parse Header
 		}
 	}
 }

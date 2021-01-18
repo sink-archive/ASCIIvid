@@ -20,10 +20,6 @@ namespace AsciiVid.AsciiVid.Frames
 
 		public byte[] GetBinary() => Cells.Select(cell => cell.GetBinary()).ToArray();
 
-		public static AsciiFrame Parse(byte[] binary) =>
-			new AsciiFrame
-			{
-				Cells = binary.Select(Cell.Parse).ToArray()
-			};
+		public static AsciiFrame Parse(byte[] binary) => new AsciiFrame(binary.Select(Cell.Parse).ToArray());
 	}
 }

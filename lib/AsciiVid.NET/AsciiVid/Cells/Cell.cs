@@ -23,10 +23,6 @@ namespace AsciiVid.Cells
 			Character = parsed.Character;
 		}
 
-		public Cell()
-		{
-		}
-
 		/// <summary>
 		///     Gets the cell as a string
 		/// </summary>
@@ -43,7 +39,7 @@ namespace AsciiVid.Cells
 		/// </summary>
 		/// <param name="binary"></param>
 		/// <returns></returns>
-		public static Cell Parse(byte binary) => new Cell {Character = Encoding.ASCII.GetChars(new[] {binary})[0]};
+		public static Cell Parse(byte binary) => new Cell(Encoding.ASCII.GetChars(new[] {binary})[0]);
 
 		/// <summary>
 		///     Attempts to parse raw binary data representing a cell

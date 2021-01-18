@@ -53,13 +53,10 @@ namespace AsciiVid.Cells
 
 		public static ColourCell Parse(byte[] binary)
 		{
-			return new ColourCell
-			{
-				Character    = Encoding.ASCII.GetChars(new[] {binary[0]})[0], // Character is first byte
-				RedChannel   = binary[1],                                     // Next three bytes are colour
-				GreenChannel = binary[2],
-				BlueChannel  = binary[3]
-			};
+			return new ColourCell(Encoding.ASCII.GetChars(new[] {binary[0]})[0], // Character is first byte
+			                      binary[1],                                     // Next three bytes are colour
+			                      binary[2],
+			                      binary[3]);
 		}
 	}
 }

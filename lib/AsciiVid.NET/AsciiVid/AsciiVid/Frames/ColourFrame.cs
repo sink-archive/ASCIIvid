@@ -31,10 +31,7 @@ namespace AsciiVid.AsciiVid.Frames
 			for (var i = 0; i < binary.Length; i += 4) // Parse cells.Step in 4s as each cell takes 4 bytes
 				working.Add(ColourCell.Parse(new[] {binary[i], binary[i + 1], binary[i + 2], binary[1 + 3]}));
 
-			return new ColourFrame
-			{
-				Cells = working.ToArray()
-			};
+			return new ColourFrame(working.ToArray());
 		}
 	}
 }

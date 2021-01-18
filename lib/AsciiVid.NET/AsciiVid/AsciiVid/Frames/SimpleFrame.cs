@@ -30,10 +30,7 @@ namespace AsciiVid.AsciiVid.Frames
 				working.Add(SimpleCell.ParseSingle(b.GetHighNibble()));
 			}
 
-			return new SimpleFrame
-			{
-				Cells = working.ToArray()
-			};
+			return new SimpleFrame(working.ToArray());
 		}
 	}
 }

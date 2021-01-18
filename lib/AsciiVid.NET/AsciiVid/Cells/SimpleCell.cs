@@ -44,7 +44,7 @@
 		/// <summary>
 		///     Parses a single simple cell
 		/// </summary>
-		public static SimpleCell ParseSingle(Nibble input) => new SimpleCell {Brightness = input};
+		public static SimpleCell ParseSingle(Nibble input) => new SimpleCell(input);
 
 		/// <summary>
 		///     Parses a pair of simple cells
@@ -59,8 +59,8 @@
 		/// </summary>
 		public static Pair<SimpleCell> ParsePair(NibblePair input) => new Pair<SimpleCell>
 		{
-			FirstItem  = new SimpleCell {Brightness = new Nibble {Value = input.FirstNibble}},
-			SecondItem = new SimpleCell {Brightness = new Nibble {Value = input.SecondNibble}}
+			FirstItem  = new SimpleCell(new Nibble {Value = input.FirstNibble}),
+			SecondItem = new SimpleCell(new Nibble {Value = input.SecondNibble})
 		};
 
 		/// <summary>

@@ -42,12 +42,8 @@ namespace AsciiVid.AsciiImg
 				working.Add(Cell.Parse(b));
 			}
 
-			return new AsciiImage
-			{
-				Cells  = working.ToArray(),
-				Width  = ToUInt16(binary[0], binary[1]), // Parse Header
-				Height = ToUInt16(binary[2], binary[3])  // Parse Header
-			};
+			return new AsciiImage(working.ToArray(),
+			                      ToUInt16(binary[0], binary[1]), ToUInt16(binary[2], binary[3])); // Parse Header
 		}
 	}
 }
