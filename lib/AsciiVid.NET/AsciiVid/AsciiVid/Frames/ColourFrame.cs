@@ -7,6 +7,17 @@ namespace AsciiVid.AsciiVid.Frames
 	{
 		public ColourCell[] Cells;
 
+		public ColourFrame(ColourCell[] cells)
+		{
+			Cells = cells;
+		}
+
+		public ColourFrame(byte[] binary)
+		{
+			var parsed = Parse(binary);
+			Cells = parsed.Cells;
+		}
+
 		public byte[] GetBinary()
 		{
 			var working = new List<byte>();

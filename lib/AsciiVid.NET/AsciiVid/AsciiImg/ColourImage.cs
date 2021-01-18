@@ -11,6 +11,21 @@ namespace AsciiVid.AsciiImg
 		public ushort Width;
 		public ushort Height;
 
+		public ColourImage(ColourCell[] cells, ushort width, ushort height)
+		{
+			Cells  = cells;
+			Width  = width;
+			Height = height;
+		}
+
+		public ColourImage(byte[] binary)
+		{
+			var parsed = Parse(binary);
+			Cells  = parsed.Cells;
+			Width  = parsed.Width;
+			Height = parsed.Height;
+		}
+
 		public byte[] GetBinary()
 		{
 			var working = new List<byte> {(byte) Width, (byte) Height};

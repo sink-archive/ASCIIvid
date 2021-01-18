@@ -12,6 +12,21 @@ namespace AsciiVid.AsciiImg
 		public ushort Width;
 		public ushort Height;
 
+		public AsciiImage(Cell[] cells, ushort width, ushort height)
+		{
+			Cells  = cells;
+			Width  = width;
+			Height = height;
+		}
+
+		public AsciiImage(byte[] binary)
+		{
+			var parsed = Parse(binary);
+			Cells  = parsed.Cells;
+			Width  = parsed.Width;
+			Height = parsed.Height;
+		}
+
 		public byte[] GetBinary() => Cells
 		                            .Select(cell => cell.GetBinary())
 		                            .Aggregate(new[] {(byte) Width, (byte) Height}, (current, b) => current

@@ -1,6 +1,4 @@
-﻿using AsciiVid.AsciiImg;
-
-namespace AsciiVid.Cells
+﻿namespace AsciiVid.Cells
 {
 	/// <summary>
 	///     Represents a simple cell
@@ -11,6 +9,17 @@ namespace AsciiVid.Cells
 		///     The brightness level of the cell
 		/// </summary>
 		public Nibble Brightness;
+
+		public SimpleCell(Nibble brightness)
+		{
+			Brightness = brightness;
+		}
+
+		public SimpleCell(byte binary)
+		{
+			var parsed = ParseSingle(binary);
+			Brightness = parsed.Brightness;
+		}
 
 		/// <summary>
 		///     Gets the raw binary of this cell

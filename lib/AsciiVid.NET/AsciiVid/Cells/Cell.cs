@@ -12,6 +12,21 @@ namespace AsciiVid.Cells
 		/// </summary>
 		public char Character;
 
+		public Cell(char character)
+		{
+			Character = character;
+		}
+
+		public Cell(byte binary)
+		{
+			var parsed = Parse(binary);
+			Character = parsed.Character;
+		}
+
+		public Cell()
+		{
+		}
+
 		/// <summary>
 		///     Gets the cell as a string
 		/// </summary>

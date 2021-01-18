@@ -21,6 +21,24 @@ namespace AsciiVid.Cells
 		/// </summary>
 		public byte BlueChannel;
 
+
+		public ColourCell(char character, byte redChannel, byte greenChannel, byte blueChannel)
+		{
+			Character    = character;
+			RedChannel   = redChannel;
+			GreenChannel = greenChannel;
+			BlueChannel  = blueChannel;
+		}
+
+		public ColourCell(byte[] binary)
+		{
+			var parsed = Parse(binary);
+			Character    = parsed.Character;
+			RedChannel   = parsed.RedChannel;
+			GreenChannel = parsed.GreenChannel;
+			BlueChannel  = parsed.BlueChannel;
+		}
+
 		/// <summary>
 		///     The corresponding Sytem.Drawing.Color for the cell
 		/// </summary>
