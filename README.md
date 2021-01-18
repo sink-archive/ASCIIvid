@@ -24,3 +24,7 @@ ASCIIvid supports both video and images. Both image and video formats come in th
 - Standard - general format. Great for handmade ASCII art images / videos as you can choose your own characters.
 - Simple - efficiency format. Great for auto-generated ASCII art images / videos. [See above](#efficient).
 - Colour - supports RGB 8 colour with 8 bits per channel. Pretty awesome.
+
+## Where do I start?
+
+When I get around to adding them, there will be example files under `/examples/`. If you want to see or work on the libraries, they are developed on the [`develop` branch](https://github.com/cainy-a/ASCIIvid/tree/develop).
