@@ -22,7 +22,7 @@ namespace AsciiVid.Cells
 		public byte BlueChannel;
 
 		/// <summary>
-		///     The corresponsing Sytem.Drawing.Color for the cell
+		///     The corresponding Sytem.Drawing.Color for the cell
 		/// </summary>
 		public Color Colour => Color.FromArgb(RedChannel, GreenChannel, BlueChannel);
 
