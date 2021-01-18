@@ -1,11 +1,15 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Text;
 
 namespace AsciiVid.Cells
 {
-	public class ColourCell : Cell
+	public class ColourCell
 	{
+		/// <summary>
+		///     The character for this cell
+		/// </summary>
+		public char Character;
+
 		/// <summary>
 		///     The red colour channel of the cell
 		/// </summary>
@@ -44,7 +48,7 @@ namespace AsciiVid.Cells
 		/// </summary>
 		public Color Colour => Color.FromArgb(RedChannel, GreenChannel, BlueChannel);
 
-		public new byte[] GetBinary() => new[]
+		public byte[] GetBinary() => new[]
 			{Encoding.ASCII.GetBytes(new[] {Character})[0], RedChannel, GreenChannel, BlueChannel};
 
 		public static ColourCell Parse(byte[] binary)
@@ -57,7 +61,5 @@ namespace AsciiVid.Cells
 				BlueChannel  = binary[3]
 			};
 		}
-
-		public new static ColourCell Parse(byte binary) => throw new ArgumentException();
 	}
 }
