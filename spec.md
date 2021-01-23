@@ -2,6 +2,8 @@
 
 Current thoughts on ASCIIvid and how it should work:
 
+**IMPORTANT: ALL UINT16 VALUES ARE LITTLE ENDIAN NOT BIG ENDIAN.** Picked arbitrarily, but by specifying it won't be an issue.
+
 ## File extensions and capabilities
 
 ### Video Formats
