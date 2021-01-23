@@ -27,5 +27,26 @@ namespace AsciiVid.Tests
 				new Cell(' '), new Cell('='), new Cell(' '), new Cell('$'), new Cell(' '), new Cell('9')
 			}.Select(c => c.Character), parsed.Cells.Select(c => c.Character));
 		}
+
+		[Test]
+		public void SimpleImageTest()
+		{
+			var input = new byte[] {0x05, 0x00, 0x05, 0x00, 0x0F, 0x0F, 0x0D, 0x0D, 0x0D, 0x07, 0x07, 0x03, 0x03, 0x03};
+
+			var parsed = SimpleImage.Parse(input);
+
+			Assert.AreEqual(5, parsed.Height);
+			Assert.AreEqual(5, parsed.Width);
+			Assert.AreEqual(new[]
+			{
+				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(15)), new SimpleCell(new Nibble(0)),
+				new SimpleCell(new Nibble(15)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(11)),
+				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(11)), new SimpleCell(new Nibble(0)),
+				new SimpleCell(new Nibble(11)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(7)),
+				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(7)), new SimpleCell(new Nibble(0)),
+				new SimpleCell(new Nibble(3)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(3)),
+				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(3))
+			}.Select(c => c.Brightness.Value), parsed.Cells.Select(c => c.Brightness.Value));
+		}
 	}
 }
