@@ -4,7 +4,7 @@ namespace AsciiVid
 {
 	public static class Utilities
 	{
-		public static ushort ToUInt16(byte firstByte, byte secondByte) => (ushort) ((firstByte << 8) + secondByte);
+		public static ushort ToUInt16(byte firstByte, byte secondByte) => (ushort) (firstByte + (secondByte << 8));
 
 		public static byte GetLowNibble(this  byte input) => (byte) ((input & 0xF0) >> 4);
 		public static byte GetHighNibble(this byte input) => (byte) (input & 0x0F);
