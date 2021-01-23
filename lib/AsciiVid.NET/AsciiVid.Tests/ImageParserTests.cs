@@ -65,10 +65,20 @@ namespace AsciiVid.Tests
 
 			Assert.AreEqual(5, parsed.Height);
 			Assert.AreEqual(5, parsed.Width);
-			Assert.AreEqual(new[]
+			var expectedCells = new[]
 			{
-				new ColourCell()
-			}, parsed.Cells);
+				new ColourCell(' ', 0, 0, 0), new ColourCell('x', 255, 0, 0), new ColourCell(' ', 0, 0, 0),
+				new ColourCell('#', 255, 0, 0), new ColourCell(' ', 0, 0, 0), new ColourCell('O', 0, 255, 0),
+				new ColourCell(' ', 0, 0, 0), new ColourCell('&', 0, 255, 0), new ColourCell(' ', 0, 0, 0),
+				new ColourCell('G', 0, 255, 0), new ColourCell(' ', 0, 0, 0), new ColourCell('%', 0, 0, 255),
+				new ColourCell(' ', 0, 0, 0), new ColourCell('@', 0, 0, 255), new ColourCell(' ', 0, 0, 0),
+				new ColourCell('=', 255, 255, 255), new ColourCell(' ', 0, 0, 0), new ColourCell('$', 255, 255, 255),
+				new ColourCell(' ', 0, 0, 0), new ColourCell('9', 255, 255, 255)
+			};
+			Assert.AreEqual(expectedCells.Select(c => c.Character), parsed.Cells.Select(c => c.Character));
+			Assert.AreEqual(expectedCells.Select(c => c.RedChannel), parsed.Cells.Select(c => c.RedChannel));
+			Assert.AreEqual(expectedCells.Select(c => c.GreenChannel), parsed.Cells.Select(c => c.GreenChannel));
+			Assert.AreEqual(expectedCells.Select(c => c.BlueChannel), parsed.Cells.Select(c => c.BlueChannel));
 		}
 	}
 }
