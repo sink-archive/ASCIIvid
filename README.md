@@ -20,4 +20,6 @@ ASCIIvid supports both video and images. Both image and video formats come in th
 ## Where do I start?
 There are example files under `/examples/` (if there aren't yet, I'll probably add them while creating unit tests :P). *Example files have been created with HxD. Each example is accompanied by a `.txt` file showing the example in a readable format.*
 
+Libraries are developed on their own branches, and releases are merged into `master`.
+
 - [.NET (dotnet)](https://github.com/cainy-a/ASCIIvid/tree/dotnet-develop/lib/AsciiVid.NET)
