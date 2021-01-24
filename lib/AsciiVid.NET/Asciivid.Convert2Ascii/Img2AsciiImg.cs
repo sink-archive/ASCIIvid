@@ -12,38 +12,35 @@ namespace Asciivid.Convert2Ascii
 {
 	public class Img2AsciiImg
 	{
-		public IImageBase Image;
-		public string     ImagePath;
-		public Type       ImageType;
+		public CharacterSet CharSet;
+		public IImageBase   Image;
+		public string       ImagePath;
+		public Type         ImageType;
 
-		public void RenderAsciiImage(CharacterSet charSet = null)
+		public void RenderAsciiImage()
 		{
-			charSet ??= CharacterSet.DefaultSet;
-
 			if (string.IsNullOrWhiteSpace(ImagePath) || !File.Exists(ImagePath))
 				throw new InvalidOperationException("That image does not exist");
 			var processor   = new ImageProcessor {ImagePath = ImagePath};
 			var magickImage = new MagickImage(ImagePath);
 
 			var colours  = GetColoursOfImage(processor);
-			var rendered = RenderColoursToChars(colours, charSet);
+			var rendered = RenderColoursToChars(colours, CharSet);
 			var image = new AsciiImage(rendered.Select(c => new Cell(c)).ToArray(),
 			                           (ushort) magickImage.Width,
 			                           (ushort) magickImage.Height);
 			Image = image;
 		}
 
-		public void RenderColourImage(CharacterSet charSet = null)
+		public void RenderColourImage()
 		{
-			charSet ??= CharacterSet.DefaultSet;
-
 			if (string.IsNullOrWhiteSpace(ImagePath) || !File.Exists(ImagePath))
 				throw new InvalidOperationException("That image does not exist");
 			var processor   = new ImageProcessor {ImagePath = ImagePath};
 			var magickImage = new MagickImage(ImagePath);
 
 			var colours  = GetColoursOfImage(processor);
-			var rendered = RenderColoursToColouredChars(colours, charSet);
+			var rendered = RenderColoursToColouredChars(colours, CharSet);
 			var image = new ColourImage((from c in rendered
 			                             let colour = c.Colour
 			                             select new ColourCell(c.Char, colour.R, colour.G, colour.B))
@@ -53,17 +50,15 @@ namespace Asciivid.Convert2Ascii
 			Image = image;
 		}
 
-		public void RenderSimpleImage(CharacterSet charSet = null)
+		public void RenderSimpleImage()
 		{
-			charSet ??= CharacterSet.DefaultSet;
-
 			if (string.IsNullOrWhiteSpace(ImagePath) || !File.Exists(ImagePath))
 				throw new InvalidOperationException("That image does not exist");
 			var processor   = new ImageProcessor {ImagePath = ImagePath};
 			var magickImage = new MagickImage(ImagePath);
 
 			var colours     = GetColoursOfImage(processor);
-			var intensities = RenderColoursToIntensities(colours, charSet.BrightnessChars.Length);
+			var intensities = RenderColoursToIntensities(colours, CharSet.BrightnessChars.Length);
 			var image = new SimpleImage(intensities.Select(i => new SimpleCell(new Nibble((byte) i))).ToArray(),
 			                            (ushort) magickImage.Width,
 			                            (ushort) magickImage.Height);

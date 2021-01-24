@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsciiVid", "AsciiVid\AsciiV
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsciiVid.Tests", "AsciiVid.Tests\AsciiVid.Tests.csproj", "{E4A61BC2-20C1-4F19-BE0C-60E82F72C618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asciivid.Convert2Ascii", "Asciivid.Convert2Ascii\Asciivid.Convert2Ascii.csproj", "{D7E80DF0-2BE2-446C-95FF-607BA7546B1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Asciivid.Convert2Ascii", "Asciivid.Convert2Ascii\Asciivid.Convert2Ascii.csproj", "{D7E80DF0-2BE2-446C-95FF-607BA7546B1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsciiVid.Render", "AsciiVid.Render\AsciiVid.Render.csproj", "{E0BBDF42-8B2F-4AAD-AFCE-18D78A8A9F82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D7E80DF0-2BE2-446C-95FF-607BA7546B1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7E80DF0-2BE2-446C-95FF-607BA7546B1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7E80DF0-2BE2-446C-95FF-607BA7546B1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0BBDF42-8B2F-4AAD-AFCE-18D78A8A9F82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0BBDF42-8B2F-4AAD-AFCE-18D78A8A9F82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0BBDF42-8B2F-4AAD-AFCE-18D78A8A9F82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0BBDF42-8B2F-4AAD-AFCE-18D78A8A9F82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
