@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Linq;
 using AsciiVid.AsciiImg;
 using AsciiVid.Cells;
 using AsciiVid.Render;
@@ -50,6 +52,44 @@ namespace AsciiVid.Tests
 			var expected = $" █ █ {newline}▓ ▓ ▓{newline} ▒ ▒ {newline}░ ░ ░";
 
 			Assert.AreEqual(expected, actual);
+		}
+
+		[Test]
+		public void FullColourRender()
+		{
+			var image = new ColourImage(new[]
+			{
+				new ColourCell(' ', 0, 0, 0), new ColourCell('x', 255, 0, 0), new ColourCell(' ', 0, 0, 0),
+				new ColourCell('#', 255, 0, 0), new ColourCell(' ', 0, 0, 0), new ColourCell('O', 0, 255, 0),
+				new ColourCell(' ', 0, 0, 0), new ColourCell('&', 0, 255, 0), new ColourCell(' ', 0, 0, 0),
+				new ColourCell('G', 0, 255, 0), new ColourCell(' ', 0, 0, 0), new ColourCell('%', 0, 0, 255),
+				new ColourCell(' ', 0, 0, 0), new ColourCell('@', 0, 0, 255), new ColourCell(' ', 0, 0, 0),
+				new ColourCell('=', 255, 255, 255), new ColourCell(' ', 0, 0, 0), new ColourCell('$', 255, 255, 255),
+				new ColourCell(' ', 0, 0, 0), new ColourCell('9', 255, 255, 255)
+			}, 5, 5);
+
+			var renderer = new ImageRenderer(image);
+			var actual   = renderer.RenderFullColourImage();
+
+			var actualText    = new string(actual.Select(c => c.Char).ToArray());
+			var actualColours = actual.Select(c => c.Colour).ToArray();
+
+			var newline = Environment.NewLine;
+
+			var expectedText = $" x # {newline}O & G{newline} % @ {newline}= $ 9";
+			var expectedColours = new[]
+			{
+				Color.FromArgb(0, 0, 0), Color.FromArgb(255, 0, 0), Color.FromArgb(0, 0, 0), Color.FromArgb(255, 0, 0),
+				Color.FromArgb(0, 0, 0), Color.Black, Color.Black, Color.FromArgb(0, 255, 0), Color.FromArgb(0, 0, 0),
+				Color.FromArgb(0, 255, 0), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 255, 0), Color.Black, Color.Black,
+				Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 255), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 255),
+				Color.FromArgb(0, 0, 0), Color.Black, Color.Black, Color.FromArgb(255, 255, 255),
+				Color.FromArgb(0, 0, 0), Color.FromArgb(255, 255, 255), Color.FromArgb(0, 0, 0),
+				Color.FromArgb(255, 255, 255)
+			};
+
+			Assert.AreEqual(expectedText, actualText);
+			Assert.AreEqual(expectedColours, actualColours);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using AsciiVid.AsciiImg;
@@ -92,6 +93,7 @@ namespace AsciiVid.Render
 		}
 	}
 
+	[DebuggerDisplay("{Char}, {Colour}")]
 	public class ColouredChar
 	{
 		public char  Char;
@@ -104,6 +106,7 @@ namespace AsciiVid.Render
 		}
 	}
 
+	[DebuggerDisplay("{Char}, {Colour}")]
 	public class ConsoleColouredChar
 	{
 		public char         Char;
