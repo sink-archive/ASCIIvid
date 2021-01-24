@@ -15,9 +15,8 @@ namespace AsciiVid.Tests
 		{
 			var image = new AsciiImage(new[]
 			{
-				new Cell(' '), new Cell('x'), new Cell(' '), new Cell('#'), new Cell(' '), new Cell('O'), new Cell(' '),
-				new Cell('&'), new Cell(' '), new Cell('G'), new Cell(' '), new Cell('%'), new Cell(' '), new Cell('@'),
-				new Cell(' '), new Cell('='), new Cell(' '), new Cell('$'), new Cell(' '), new Cell('9')
+				c(' '), c('x'), c(' '), c('#'), c(' '), c('O'), c(' '), c('&'), c(' '), c('G'), c(' '), c('%'), c(' '),
+				c('@'), c(' '), c('='), c(' '), c('$'), c(' '), c('9')
 			}, 5, 5);
 
 			var renderer = new ImageRenderer(image);
@@ -28,6 +27,8 @@ namespace AsciiVid.Tests
 			var expected = $" x # {newline}O & G{newline} % @ {newline}= $ 9";
 
 			Assert.AreEqual(expected, actual);
+
+			static Cell c(char value) => new Cell(value); // thank god for space saving
 		}
 
 		[Test]
@@ -35,13 +36,10 @@ namespace AsciiVid.Tests
 		{
 			var image = new SimpleImage(new[]
 			{
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(15)), new SimpleCell(new Nibble(0)),
-				new SimpleCell(new Nibble(15)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(11)),
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(11)), new SimpleCell(new Nibble(0)),
-				new SimpleCell(new Nibble(11)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(7)),
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(7)), new SimpleCell(new Nibble(0)),
-				new SimpleCell(new Nibble(3)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(3)),
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(3))
+				c(00), c(15), c(00), c(15), c(00),
+				c(11), c(00), c(11), c(00), c(11),
+				c(00), c(07), c(00), c(07), c(00),
+				c(03), c(00), c(03), c(00), c(03)
 			}, 5, 5);
 
 			var renderer = new ImageRenderer(image);
@@ -52,6 +50,8 @@ namespace AsciiVid.Tests
 			var expected = $" █ █ {newline}▓ ▓ ▓{newline} ▒ ▒ {newline}░ ░ ░";
 
 			Assert.AreEqual(expected, actual);
+
+			static SimpleCell c(byte value) => new SimpleCell(new Nibble(value)); // thank god for space saving
 		}
 
 		[Test]
@@ -59,13 +59,10 @@ namespace AsciiVid.Tests
 		{
 			var image = new ColourImage(new[]
 			{
-				new ColourCell(' ', 0, 0, 0), new ColourCell('x', 255, 0, 0), new ColourCell(' ', 0, 0, 0),
-				new ColourCell('#', 255, 0, 0), new ColourCell(' ', 0, 0, 0), new ColourCell('O', 0, 255, 0),
-				new ColourCell(' ', 0, 0, 0), new ColourCell('&', 0, 255, 0), new ColourCell(' ', 0, 0, 0),
-				new ColourCell('G', 0, 255, 0), new ColourCell(' ', 0, 0, 0), new ColourCell('%', 0, 0, 255),
-				new ColourCell(' ', 0, 0, 0), new ColourCell('@', 0, 0, 255), new ColourCell(' ', 0, 0, 0),
-				new ColourCell('=', 255, 255, 255), new ColourCell(' ', 0, 0, 0), new ColourCell('$', 255, 255, 255),
-				new ColourCell(' ', 0, 0, 0), new ColourCell('9', 255, 255, 255)
+				c(' ', 0, 0, 0), c('x', 255, 0, 0), c(' ', 0, 0, 0), c('#', 255, 0, 0), c(' ', 0, 0, 0),
+				c('O', 0, 255, 0), c(' ', 0, 0, 0), c('&', 0, 255, 0), c(' ', 0, 0, 0), c('G', 0, 255, 0),
+				c(' ', 0, 0, 0), c('%', 0, 0, 255), c(' ', 0, 0, 0), c('@', 0, 0, 255), c(' ', 0, 0, 0),
+				c('=', 255, 255, 255), c(' ', 0, 0, 0), c('$', 255, 255, 255), c(' ', 0, 0, 0), c('9', 255, 255, 255)
 			}, 5, 5);
 
 			var renderer = new ImageRenderer(image);
@@ -79,17 +76,22 @@ namespace AsciiVid.Tests
 			var expectedText = $" x # {newline}O & G{newline} % @ {newline}= $ 9";
 			var expectedColours = new[]
 			{
-				Color.FromArgb(0, 0, 0), Color.FromArgb(255, 0, 0), Color.FromArgb(0, 0, 0), Color.FromArgb(255, 0, 0),
-				Color.FromArgb(0, 0, 0), Color.Black, Color.Black, Color.FromArgb(0, 255, 0), Color.FromArgb(0, 0, 0),
-				Color.FromArgb(0, 255, 0), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 255, 0), Color.Black, Color.Black,
-				Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 255), Color.FromArgb(0, 0, 0), Color.FromArgb(0, 0, 255),
-				Color.FromArgb(0, 0, 0), Color.Black, Color.Black, Color.FromArgb(255, 255, 255),
-				Color.FromArgb(0, 0, 0), Color.FromArgb(255, 255, 255), Color.FromArgb(0, 0, 0),
-				Color.FromArgb(255, 255, 255)
+				colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0),
+				Color.Black, Color.Black,
+				colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0),
+				Color.Black, Color.Black,
+				colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0),
+				Color.Black, Color.Black,
+				colour(255, 255, 255), colour(0, 0, 0), colour(255, 255, 255), colour(0, 0, 0), colour(255, 255, 255)
 			};
 
 			Assert.AreEqual(expectedText, actualText);
 			Assert.AreEqual(expectedColours, actualColours);
+
+			static ColourCell c(char value, byte r, byte g, byte b)
+				=> new ColourCell(value, r, g, b); // thank god for space saving
+
+			static Color colour(byte r, byte g, byte b) => Color.FromArgb(r, g, b);
 		}
 	}
 }

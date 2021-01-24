@@ -39,14 +39,13 @@ namespace AsciiVid.Tests
 			Assert.AreEqual(5, parsed.Width);
 			Assert.AreEqual(new[]
 			{
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(15)), new SimpleCell(new Nibble(0)),
-				new SimpleCell(new Nibble(15)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(11)),
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(11)), new SimpleCell(new Nibble(0)),
-				new SimpleCell(new Nibble(11)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(7)),
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(7)), new SimpleCell(new Nibble(0)),
-				new SimpleCell(new Nibble(3)), new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(3)),
-				new SimpleCell(new Nibble(0)), new SimpleCell(new Nibble(3))
+				c(00), c(15), c(00), c(15), c(00),
+				c(13), c(00), c(13), c(00), c(13),
+				c(00), c(07), c(00), c(07), c(00),
+				c(03), c(00), c(03), c(00), c(03) // unneccesary 0s to make it line up
 			}.Select(c => c.Brightness.Value), parsed.Cells.Select(c => c.Brightness.Value));
+
+			static SimpleCell c(byte value) => new SimpleCell(new Nibble(value)); // thank god for space saving
 		}
 
 		[Test]
