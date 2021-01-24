@@ -9,16 +9,13 @@
 		///     The default set
 		/// </summary>
 		public static CharacterSet DefaultSet =
-			new CharacterSet(' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-
-		public CharacterSet(params char[] brightness1Char)
-		{
-			BrightnessChars = brightness1Char;
-		}
+			new CharacterSet(' ', ' ', ' ', '░', '░', '░', '▒', '▒', '▒', '▓', '▓', '▓', '█', '█', '█', '█');
 
 		/// <summary>
 		///     The characters in this set.
 		/// </summary>
 		public char[] BrightnessChars;
+
+		public CharacterSet(params char[] brightness1Char) => BrightnessChars = brightness1Char;
 	}
 }

@@ -13,7 +13,7 @@ namespace AsciiVid.Render
 		public CharacterSet CharSet = CharacterSet.DefaultSet;
 		public IImageBase   Image;
 
-		public ImageRenderer(AsciiImage image) => Image = image;
+		public ImageRenderer(IImageBase image) => Image = image;
 
 		public string RenderAsciiImage()
 		{
