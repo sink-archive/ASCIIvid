@@ -69,7 +69,7 @@ namespace AsciiVid.Render
 			return working.ToArray();
 		}
 
-		public ConsoleColouredChar[] RendeConsoleColourImage()
+		public ConsoleColouredChar[] RenderConsoleColourImage()
 		{
 			var working = new List<ConsoleColouredChar>();
 			var img     = (ColourImage) Image;
