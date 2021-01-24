@@ -11,21 +11,16 @@ namespace AsciiVid
 	{
 		public bool Pair;
 
-		public byte RawBinary { get; }
+		public byte RawBinary { get; private set; }
 
-		public NibblePair(Nibble nibble) : this()
-		{
-			RawBinary.SetLowNibble(nibble.Value);
-		}
+		public NibblePair(Nibble nibble) : this() => RawBinary = RawBinary.SetLowNibble(nibble.Value);
 
 		public NibblePair(byte nibble) : this(new Nibble(nibble))
 		{
 		}
 
 		public NibblePair(Nibble firstNibble, Nibble secondNibble) : this(firstNibble)
-		{
-			RawBinary.SeHighNibble(secondNibble.Value);
-		}
+			=> RawBinary = RawBinary.SeHighNibble(secondNibble.Value);
 
 		public NibblePair(byte firstNibble, byte secondNibble) : this(new Nibble(firstNibble), new Nibble(secondNibble))
 		{
@@ -34,7 +29,7 @@ namespace AsciiVid
 		public byte FirstNibble
 		{
 			get => RawBinary.GetLowNibble();
-			set => RawBinary.SetLowNibble(value);
+			set => RawBinary = RawBinary.SetLowNibble(value);
 		}
 
 		public byte SecondNibble
@@ -45,8 +40,8 @@ namespace AsciiVid
 					: throw new InvalidOperationException("Only one nibble is stored. Use FirstNibble instead.");
 			set
 			{
-				RawBinary.SeHighNibble(value);
-				Pair = true;
+				RawBinary = RawBinary.SeHighNibble(value);
+				Pair      = true;
 			}
 		}
 
@@ -70,12 +65,12 @@ namespace AsciiVid
 	{
 		public Nibble(byte firstNibble) : this() => Value = firstNibble;
 
-		public byte RawBinary { get; }
+		public byte RawBinary { get; private set; }
 
 		public byte Value
 		{
 			get => RawBinary.GetHighNibble();
-			set => RawBinary.SetLowNibble(value);
+			set => RawBinary = RawBinary.SetLowNibble(value);
 		}
 	}
 }

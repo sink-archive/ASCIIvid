@@ -9,20 +9,20 @@ namespace AsciiVid
 		public static byte GetLowNibble(this  byte input) => (byte) ((input & 0xF0) >> 4);
 		public static byte GetHighNibble(this byte input) => (byte) (input & 0x0F);
 
-		public static void SetLowNibble(this byte input, byte newValue)
+		public static byte SetLowNibble(this byte input, byte newValue)
 		{
 			if (!newValue.IsValidNibble())
 				throw new ArgumentOutOfRangeException(nameof(newValue),
 				                                      "Too big for a nibble! Store a value between 0-15");
-			input = (byte) (input & (0xF0 + newValue));
+			return (byte) ((input & 0xF0) | (newValue & 0xF));
 		}
 
-		public static void SeHighNibble(this byte input, byte newValue)
+		public static byte SeHighNibble(this byte input, byte newValue)
 		{
 			if (!newValue.IsValidNibble())
 				throw new ArgumentOutOfRangeException(nameof(newValue),
 				                                      "Too big for a nibble! Store a value between 0-15");
-			input = (byte) (input & (0x0F + (newValue << 4)));
+			return (byte) ((input & 0x0F) | ((newValue & 0xF) << 4));
 		}
 
 		public static bool IsValidNibble(this byte input) => input < 16;
