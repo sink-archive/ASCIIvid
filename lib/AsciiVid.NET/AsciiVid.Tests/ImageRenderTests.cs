@@ -93,5 +93,43 @@ namespace AsciiVid.Tests
 
 			static Color colour(byte r, byte g, byte b) => Color.FromArgb(r, g, b);
 		}
+
+		[Test]
+		public void ConsoleColourRender()
+		{
+			var image = new ColourImage(new[]
+			{
+				c(' ', 0, 0, 0), c('x', 255, 0, 0), c(' ', 0, 0, 0), c('#', 255, 0, 0), c(' ', 0, 0, 0),
+				c('O', 0, 255, 0), c(' ', 0, 0, 0), c('&', 0, 255, 0), c(' ', 0, 0, 0), c('G', 0, 255, 0),
+				c(' ', 0, 0, 0), c('%', 0, 0, 255), c(' ', 0, 0, 0), c('@', 0, 0, 255), c(' ', 0, 0, 0),
+				c('=', 255, 255, 255), c(' ', 0, 0, 0), c('$', 255, 255, 255), c(' ', 0, 0, 0), c('9', 255, 255, 255)
+			}, 5, 5);
+
+			var renderer = new ImageRenderer(image);
+			var actual   = renderer.RenderConsoleColourImage();
+
+			var actualText    = new string(actual.Select(c => c.Char).ToArray());
+			var actualColours = actual.Select(c => c.Colour).ToArray();
+
+			var newline = Environment.NewLine;
+
+			var expectedText = $" x # {newline}O & G{newline} % @ {newline}= $ 9";
+			var expectedColours = new[]
+			{
+				ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black,
+				ConsoleColor.Black, ConsoleColor.Black,
+				ConsoleColor.Green, ConsoleColor.Black, ConsoleColor.Green, ConsoleColor.Black, ConsoleColor.Green,
+				ConsoleColor.Black, ConsoleColor.Black,
+				ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Black,
+				ConsoleColor.Black, ConsoleColor.Black,
+				ConsoleColor.White, ConsoleColor.Black, ConsoleColor.White, ConsoleColor.Black, ConsoleColor.White
+			};
+
+			Assert.AreEqual(expectedText, actualText);
+			Assert.AreEqual(expectedColours, actualColours);
+
+			static ColourCell c(char value, byte r, byte g, byte b)
+				=> new ColourCell(value, r, g, b); // thank god for space saving
+		}
 	}
 }
