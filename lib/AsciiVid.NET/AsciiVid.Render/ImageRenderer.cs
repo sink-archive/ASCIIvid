@@ -13,6 +13,8 @@ namespace AsciiVid.Render
 		public CharacterSet CharSet = CharacterSet.DefaultSet;
 		public IImageBase   Image;
 
+		public ImageRenderer(AsciiImage image) => Image = image;
+
 		public string RenderAsciiImage()
 		{
 			var working = new List<char>();
@@ -20,8 +22,10 @@ namespace AsciiVid.Render
 			for (var i = 0; i < img.Cells.Length; i++)
 			{
 				working.Add(img.Cells[i].Character);
-				if (i == img.Width) working.AddRange(Environment.NewLine);
+				if ((i + 1) % img.Width == 0) working.AddRange(Environment.NewLine);
 			}
+
+			working.RemoveRange(working.Count - 2, 2); // trailing newline
 
 			return new string(working.ToArray());
 		}
@@ -33,8 +37,10 @@ namespace AsciiVid.Render
 			for (var i = 0; i < img.Cells.Length; i++)
 			{
 				working.Add(CharSet.BrightnessChars[img.Cells[i].Brightness.Value]);
-				if (i == img.Width) working.AddRange(Environment.NewLine);
+				if ((i + 1) % img.Width == 0) working.AddRange(Environment.NewLine);
 			}
+
+			working.RemoveRange(working.Count - 2, 2); // trailing newline
 
 			return new string(working.ToArray());
 		}
@@ -51,11 +57,13 @@ namespace AsciiVid.Render
 					                             c.RedChannel,
 					                             c.GreenChannel,
 					                             c.BlueChannel)));
-				if (i == img.Width)
+				if ((i + 1) % img.Width == 0)
 					working
 					   .AddRange(Environment.NewLine
 					                        .Select(n => new ColouredChar(n, Color.Black)));
 			}
+
+			working.RemoveRange(working.Count - 2, 2); // trailing newline
 
 			return working.ToArray();
 		}
@@ -72,11 +80,13 @@ namespace AsciiVid.Render
 					                                    c.RedChannel,
 					                                    c.GreenChannel,
 					                                    c.BlueChannel)));
-				if (i == img.Width)
+				if ((i + 1) % img.Width == 0)
 					working
 					   .AddRange(Environment.NewLine
 					                        .Select(n => new ConsoleColouredChar(n, ConsoleColor.Black)));
 			}
+
+			working.RemoveRange(working.Count - 2, 2); // trailing newline
 
 			return working.ToArray();
 		}

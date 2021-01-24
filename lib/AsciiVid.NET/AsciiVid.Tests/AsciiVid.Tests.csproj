@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AsciiVid.Render\AsciiVid.Render.csproj" />
     <ProjectReference Include="..\AsciiVid\AsciiVid.csproj" />
   </ItemGroup>
 
