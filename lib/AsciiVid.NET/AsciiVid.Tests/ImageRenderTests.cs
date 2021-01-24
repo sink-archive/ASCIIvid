@@ -11,7 +11,7 @@ namespace AsciiVid.Tests
 	public class ImageRenderTests
 	{
 		[Test]
-		public void AsciiImageRender()
+		public void AsciiImageRenderTest()
 		{
 			var image = new AsciiImage(new[]
 			{
@@ -32,7 +32,7 @@ namespace AsciiVid.Tests
 		}
 
 		[Test]
-		public void SimpleImageRender()
+		public void SimpleImageRenderTest()
 		{
 			var image = new SimpleImage(new[]
 			{
@@ -55,7 +55,7 @@ namespace AsciiVid.Tests
 		}
 
 		[Test]
-		public void FullColourRender()
+		public void FullColourRenderTest()
 		{
 			var image = new ColourImage(new[]
 			{
@@ -95,7 +95,7 @@ namespace AsciiVid.Tests
 		}
 
 		[Test]
-		public void ConsoleColourRender()
+		public void ConsoleColourRenderTest()
 		{
 			var image = new ColourImage(new[]
 			{
