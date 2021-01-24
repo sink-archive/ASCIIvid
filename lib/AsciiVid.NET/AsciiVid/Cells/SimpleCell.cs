@@ -1,5 +1,8 @@
-﻿namespace AsciiVid.Cells
+﻿using System.Diagnostics;
+
+namespace AsciiVid.Cells
 {
+	[DebuggerDisplay("{Brightness}")]
 	/// <summary>
 	///     Represents a simple cell
 	/// </summary>
@@ -10,10 +13,7 @@
 		/// </summary>
 		public Nibble Brightness;
 
-		public SimpleCell(Nibble brightness)
-		{
-			Brightness = brightness;
-		}
+		public SimpleCell(Nibble brightness) => Brightness = brightness;
 
 		public SimpleCell(byte binary)
 		{

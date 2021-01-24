@@ -1,19 +1,21 @@
-﻿using System.Drawing;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Text;
 
 namespace AsciiVid.Cells
 {
+	[DebuggerDisplay("{Character}, {RedChannel},{GreenChannel},{BlueChannel}")]
 	public class ColourCell
 	{
+		/// <summary>
+		///     The blue colour channel of the cell
+		/// </summary>
+		public byte BlueChannel;
+
 		/// <summary>
 		///     The character for this cell
 		/// </summary>
 		public char Character;
-
-		/// <summary>
-		///     The red colour channel of the cell
-		/// </summary>
-		public byte RedChannel;
 
 		/// <summary>
 		///     The green colour channel of the cell
@@ -21,9 +23,9 @@ namespace AsciiVid.Cells
 		public byte GreenChannel;
 
 		/// <summary>
-		///     The blue colour channel of the cell
+		///     The red colour channel of the cell
 		/// </summary>
-		public byte BlueChannel;
+		public byte RedChannel;
 
 
 		public ColourCell(char character, byte redChannel, byte greenChannel, byte blueChannel)

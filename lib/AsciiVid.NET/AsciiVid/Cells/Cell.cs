@@ -1,7 +1,9 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 
 namespace AsciiVid.Cells
 {
+	[DebuggerDisplay("{Character}")]
 	/// <summary>
 	///     Represents one ASCII art cell
 	/// </summary>
@@ -12,10 +14,7 @@ namespace AsciiVid.Cells
 		/// </summary>
 		public char Character;
 
-		public Cell(char character)
-		{
-			Character = character;
-		}
+		public Cell(char character) => Character = character;
 
 		public Cell(byte binary)
 		{

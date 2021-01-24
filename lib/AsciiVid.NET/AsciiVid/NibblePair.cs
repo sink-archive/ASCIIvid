@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace AsciiVid
 {
+	[DebuggerDisplay("{FirstNibble}, {SecondNibble}")]
 	/// <summary>
 	///     Stores one or two nibbles (4 bits)
 	/// </summary>
@@ -63,12 +65,10 @@ namespace AsciiVid
 			new NibblePair(firstNibble, secondNibble);
 	}
 
+	[DebuggerDisplay("{Value}")]
 	public struct Nibble
 	{
-		public Nibble(byte firstNibble) : this()
-		{
-			Value = firstNibble;
-		}
+		public Nibble(byte firstNibble) : this() => Value = firstNibble;
 
 		public byte RawBinary { get; }
 
