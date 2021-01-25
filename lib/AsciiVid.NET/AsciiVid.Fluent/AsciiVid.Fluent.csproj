@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Asciivid.Convert2Ascii\Asciivid.Convert2Ascii.csproj" />
+    <ProjectReference Include="..\AsciiVid.Render\AsciiVid.Render.csproj" />
     <ProjectReference Include="..\AsciiVid\AsciiVid.csproj" />
   </ItemGroup>
 

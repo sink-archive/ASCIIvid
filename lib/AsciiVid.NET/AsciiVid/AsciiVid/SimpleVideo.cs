@@ -4,7 +4,7 @@ using static AsciiVid.Utilities;
 
 namespace AsciiVid.AsciiVid
 {
-	public class SimpleVideo
+	public class SimpleVideo : IVideoBase
 	{
 		public byte          Framerate;
 		public SimpleFrame[] Frames;

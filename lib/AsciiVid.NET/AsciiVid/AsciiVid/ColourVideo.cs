@@ -4,7 +4,7 @@ using static AsciiVid.Utilities;
 
 namespace AsciiVid.AsciiVid
 {
-	public class ColourVideo
+	public class ColourVideo : IVideoBase
 	{
 		public byte          Framerate;
 		public ColourFrame[] Frames;
