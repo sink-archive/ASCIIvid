@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Linq;
 using AsciiVid.AsciiImg;
 using AsciiVid.AsciiVid;
 using AsciiVid.Cells;
 using Asciivid.Convert2Ascii;
+using AsciiVid.Render;
 using static AsciiVid.FileReader;
 
 namespace AsciiVid.Fluent
@@ -44,7 +46,7 @@ namespace AsciiVid.Fluent
 				Type = VideoTypes.Colour;
 		}
 
-		private VideoMediaItem(IVideoBase video, Type type)
+		internal VideoMediaItem(IVideoBase video, Type type)
 		{
 			Video = video;
 			if (type == typeof(AsciiVideo))
@@ -77,7 +79,7 @@ namespace AsciiVid.Fluent
 				Type = ImageTypes.Colour;
 		}
 
-		private ImageMediaItem(IImageBase image, Type type)
+		internal ImageMediaItem(IImageBase image, Type type)
 		{
 			Image = image;
 			if (type == typeof(AsciiImage))
@@ -91,6 +93,14 @@ namespace AsciiVid.Fluent
 		internal ImageMediaItem(string filePath) : this(ReadImage(filePath, out var type), type)
 		{
 		}
+
+		public TextMediaItem Render(CharacterSet charSet = null)
+		{
+			var renderer = new ImageRenderer(Image) {CharSet = charSet ?? CharacterSet.DefaultSet};
+			return new TextMediaItem(Type == ImageTypes.Simple
+				                         ? renderer.RenderSimpleImage()
+				                         : renderer.RenderAsciiImage());
+		}
 	}
 
 	public class TextMediaItem
@@ -100,6 +110,20 @@ namespace AsciiVid.Fluent
 		internal TextMediaItem(string text)
 		{
 			Text = text;
+		}
+
+		public ImageMediaItem ToAsciiImg(int? width)
+		{
+			width ??= Text.Split('\n') // Split into lines by checking for Line Feeds
+			               [0]         // Get the first line
+			              .Trim('\r')  // Remove any Carriage Returns
+			              .Length;     // Get the length of the first line.
+
+			var cells = (from c in Text
+			             where c != '\n' && c != '\r'
+			             select new Cell(c)).ToArray();
+			var image = new AsciiImage(cells, (ushort) width, (ushort) Text.Split('\n').Length);
+			return new ImageMediaItem(image, typeof(AsciiImage));
 		}
 	}
 
