@@ -26,7 +26,7 @@ namespace AsciiVid.Render
 				if ((i + 1) % img.Width == 0) working.AddRange(Environment.NewLine);
 			}
 
-			working.RemoveRange(working.Count - 2, 2); // trailing newline
+			RemoveTrailingNewline(ref working);
 
 			return new string(working.ToArray());
 		}
@@ -41,7 +41,7 @@ namespace AsciiVid.Render
 				if ((i + 1) % img.Width == 0) working.AddRange(Environment.NewLine);
 			}
 
-			working.RemoveRange(working.Count - 2, 2); // trailing newline
+			RemoveTrailingNewline(ref working);
 
 			return new string(working.ToArray());
 		}
@@ -64,7 +64,7 @@ namespace AsciiVid.Render
 					                        .Select(n => new ColouredChar(n, Color.Black)));
 			}
 
-			working.RemoveRange(working.Count - 2, 2); // trailing newline
+			RemoveTrailingNewline(ref working);
 
 			return working.ToArray();
 		}
@@ -87,9 +87,30 @@ namespace AsciiVid.Render
 					                        .Select(n => new ConsoleColouredChar(n, ConsoleColor.Black)));
 			}
 
-			working.RemoveRange(working.Count - 2, 2); // trailing newline
+			RemoveTrailingNewline(ref working);
 
 			return working.ToArray();
+		}
+
+		private static void RemoveTrailingNewline(ref List<char> working)
+		{
+			if (new string(working.ToArray()).EndsWith(Environment.NewLine))
+				working.RemoveRange(working.Count - Environment.NewLine.Length,
+				                    Environment.NewLine.Length); // trailing newline
+		}
+
+		private static void RemoveTrailingNewline(ref List<ColouredChar> working)
+		{
+			if (new string(working.Select(c => c.Char).ToArray()).EndsWith(Environment.NewLine))
+				working.RemoveRange(working.Count - Environment.NewLine.Length,
+				                    Environment.NewLine.Length); // trailing newline
+		}
+
+		private static void RemoveTrailingNewline(ref List<ConsoleColouredChar> working)
+		{
+			if (new string(working.Select(c => c.Char).ToArray()).EndsWith(Environment.NewLine))
+				working.RemoveRange(working.Count - Environment.NewLine.Length,
+				                    Environment.NewLine.Length); // trailing newline
 		}
 	}
 
