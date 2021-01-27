@@ -74,16 +74,34 @@ namespace AsciiVid.Tests
 			var newline = Environment.NewLine;
 
 			var expectedText = $" x # {newline}O & G{newline} % @ {newline}= $ 9";
-			var expectedColours = new[]
+			var expectedColours = Environment.NewLine.Length switch
 			{
-				colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0),
-				Color.Black, Color.Black,
-				colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0),
-				Color.Black, Color.Black,
-				colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0),
-				Color.Black, Color.Black,
-				colour(255, 255, 255), colour(0, 0, 0), colour(255, 255, 255), colour(0, 0, 0), colour(255, 255, 255)
+				2 => new[]
+				{
+					colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0),
+					Color.Black, Color.Black,
+					colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0),
+					Color.Black, Color.Black,
+					colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0),
+					Color.Black, Color.Black,
+					colour(255, 255, 255), colour(0, 0, 0), colour(255, 255, 255), colour(0, 0, 0),
+					colour(255, 255, 255)
+				},
+				1 => new[]
+				{
+					colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0), colour(255, 0, 0), colour(0, 0, 0),
+					Color.Black,
+					colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0), colour(0, 0, 0), colour(0, 255, 0),
+					Color.Black,
+					colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0), colour(0, 0, 255), colour(0, 0, 0),
+					Color.Black,
+					colour(255, 255, 255), colour(0, 0, 0), colour(255, 255, 255), colour(0, 0, 0),
+					colour(255, 255, 255)
+				},
+				_ => new Color[0]
 			};
+
+			if (!expectedColours.Any()) throw new Exception("Newline string is not 1 or 2 characters for some reason");
 
 			Assert.AreEqual(expectedText, actualText);
 			Assert.AreEqual(expectedColours, actualColours);
@@ -114,16 +132,31 @@ namespace AsciiVid.Tests
 			var newline = Environment.NewLine;
 
 			var expectedText = $" x # {newline}O & G{newline} % @ {newline}= $ 9";
-			var expectedColours = new[]
+			var expectedColours = Environment.NewLine.Length switch
 			{
-				ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black,
-				ConsoleColor.Black, ConsoleColor.Black,
-				ConsoleColor.Green, ConsoleColor.Black, ConsoleColor.Green, ConsoleColor.Black, ConsoleColor.Green,
-				ConsoleColor.Black, ConsoleColor.Black,
-				ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Black,
-				ConsoleColor.Black, ConsoleColor.Black,
-				ConsoleColor.White, ConsoleColor.Black, ConsoleColor.White, ConsoleColor.Black, ConsoleColor.White
+				2 => new[]
+				{
+					ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black,
+					ConsoleColor.Black, ConsoleColor.Black, ConsoleColor.Green, ConsoleColor.Black,
+					ConsoleColor.Green, ConsoleColor.Black, ConsoleColor.Green, ConsoleColor.Black,
+					ConsoleColor.Black, ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Black,
+					ConsoleColor.Blue, ConsoleColor.Black, ConsoleColor.Black, ConsoleColor.Black,
+					ConsoleColor.White, ConsoleColor.Black, ConsoleColor.White, ConsoleColor.Black,
+					ConsoleColor.White
+				},
+				1 => new[]
+				{
+					ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black, ConsoleColor.Red, ConsoleColor.Black,
+					ConsoleColor.Black, ConsoleColor.Green, ConsoleColor.Black, ConsoleColor.Green,
+					ConsoleColor.Black, ConsoleColor.Green, ConsoleColor.Black, ConsoleColor.Black,
+					ConsoleColor.Blue, ConsoleColor.Black, ConsoleColor.Blue, ConsoleColor.Black,
+					ConsoleColor.Black, ConsoleColor.White, ConsoleColor.Black, ConsoleColor.White,
+					ConsoleColor.Black, ConsoleColor.White
+				},
+				_ => new ConsoleColor[0]
 			};
+
+			if (!expectedColours.Any()) throw new Exception("Newline string is not 1 or 2 characters for some reason");
 
 			Assert.AreEqual(expectedText, actualText);
 			Assert.AreEqual(expectedColours, actualColours);
