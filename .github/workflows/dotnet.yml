@@ -5,7 +5,6 @@ on:
     branches: [ dotnet-develop ]
   pull_request:
     branches: [ dotnet-develop ]
-  workflow_dispatch:
 
 jobs:
   build:
