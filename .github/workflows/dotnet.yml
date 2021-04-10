@@ -17,6 +17,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.x
+    - name: Move to correct directory
+      run: cd lib/AsciiVid.NET
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
