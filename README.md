@@ -1,4 +1,6 @@
 # ASCIIvid & ASCIIimg
+[![.NET](https://github.com/cainy-a/ASCIIvid/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cainy-a/ASCIIvid/actions/workflows/dotnet.yml)
+
 **IMPORTANT NOTICE**  
 This repository uses *British naming*, this means colour instead of color, etc. in docs and official libraries.  
 Make sure you understand this before opening some issue about a typo.
