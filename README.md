@@ -1,3 +1,7 @@
+You know what screw this make an array of strings and shove it into https://msgpack.org/
+
+Not as efficient but this format is dumb and only ever had a half finished dotnet lib.
+
 # ASCIIvid & ASCIIimg
 [![.NET](https://github.com/cainy-a/ASCIIvid/actions/workflows/dotnet.yml/badge.svg)](https://github.com/cainy-a/ASCIIvid/actions/workflows/dotnet.yml)
 
